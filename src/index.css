@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-white antialiased selection:bg-white/20;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@utility glass {
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+}
+
+@utility glass-hover {
+  @apply hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300;
+}
+
+@utility bento-item {
+  @apply rounded-3xl glass glass-hover p-6 flex flex-col justify-between overflow-hidden relative h-full w-full;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+.rainbow-border {
+  position: relative;
+  border-radius: inherit;
+}
+
+.rainbow-border::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000
+  );
+  filter: blur(5px);
+  z-index: -1;
+  background-size: 400%;
+  animation: rainbow 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.rainbow-border:hover::after {
+  opacity: 0.4;
+}
+
+.react-grid-placeholder {
+  @apply bg-white/5 rounded-3xl !opacity-50 !duration-200;
+}
+
+.react-draggable-dragging {
+  @apply !z-50 shadow-2xl scale-[1.02] cursor-grabbing !transition-none;
+}
+
+@utility mesh-gradient {
+  position: relative;
+  isolation: isolate;
+  background: #050505; /* fallback */
+}
+
+/* Background pseudo-element handles all motion */
+.mesh-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: 
+    /* Conic gradient – spin without transform on parent */
+    conic-gradient(
+      from 0deg at 20% 30%,
+      hsla(356.6, 100%, 45%, 0.3),
+      hsla(280, 80%, 55%, 0.2),
+      hsla(234.8, 70.5%, 40%, 0.3),
+      hsla(132.8, 85.5%, 35%, 0.2),
+      hsla(356.6, 100%, 45%, 0.3)
+    ),
+    /* Repeating stripes */
+    repeating-linear-gradient(
+      45deg,
+      hsla(0, 0%, 100%, 0.02) 0px,
+      hsla(0, 0%, 100%, 0.02) 2px,
+      transparent 2px,
+      transparent 8px
+    ),
+    /* Three drifting blobs using radial gradients */
+    radial-gradient(circle at var(--x1, 0%) var(--y1, 0%), hsla(356.6, 100%, 30%, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at var(--x2, 100%) var(--y2, 100%), hsla(234.8, 70.5%, 25%, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at var(--x3, 50%) var(--y3, 50%), hsla(132.8, 85.5%, 28%, 0.35) 0%, transparent 50%);
+  
+  background-blend-mode: overlay, normal, normal, normal, normal;
+  background-size: 200% 200%, auto, auto, auto, auto;
+  background-repeat: no-repeat;
+  
+  animation: 
+    conic-drift 18s infinite alternate ease-in-out,
+    stripe-shift 7s infinite alternate ease-in-out,
+    blob-drift-1 14s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95),
+    blob-drift-2 19s infinite alternate-reverse cubic-bezier(0.2, 0.8, 0.3, 1),
+    blob-drift-3 23s infinite alternate cubic-bezier(0.6, 0.04, 0.4, 0.96);
+  
+  pointer-events: none; /* so background doesn't block clicks */
+}
+
+/* Only background-position and size – no transforms on parent */
+@keyframes conic-drift {
+  0% { background-position: 0% 0%; background-size: 200% 200%; }
+  100% { background-position: 100% 100%; background-size: 250% 250%; }
+}
+
+@keyframes stripe-shift {
+  0% { background-position: 0% 0%; background-size: 100% 100%; }
+  100% { background-position: 100% 100%; background-size: 150% 150%; }
+}
+
+/* Blob positions – CSS variables animated without transforms on parent */
+@keyframes blob-drift-1 {
+  0% { --x1: 0%; --y1: 0%; }
+  25% { --x1: 80%; --y1: 20%; }
+  50% { --x1: 40%; --y1: 90%; }
+  75% { --x1: 100%; --y1: 60%; }
+  100% { --x1: 10%; --y1: 80%; }
+}
+
+@keyframes blob-drift-2 {
+  0% { --x2: 100%; --y2: 100%; }
+  33% { --x2: 30%; --y2: 70%; }
+  66% { --x2: 90%; --y2: 10%; }
+  100% { --x2: 20%; --y2: 50%; }
+}
+
+@keyframes blob-drift-3 {
+  0% { --x3: 50%; --y3: 50%; }
+  20% { --x3: 10%; --y3: 90%; }
+  40% { --x3: 80%; --y3: 30%; }
+  60% { --x3: 30%; --y3: 70%; }
+  80% { --x3: 95%; --y3: 15%; }
+  100% { --x3: 5%; --y3: 85%; }
+}
+
+/* Still need to register custom properties */
+@property --x1 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+@property --y1 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+@property --x2 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+@property --y2 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+@property --x3 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
+@property --y3 {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 50%;
+}
