@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
+import { ConfigProvider, theme } from 'antd';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './pages/Dashboard';
 import { Productivity } from './pages/Productivity';
@@ -22,12 +23,12 @@ import Loader from '@/src/components/CustomLoader';
 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-function DashboardLayout({ children }: { children: React.ReactNode }) {
+function DashboardLayout() {
   return (
     <div className="flex h-screen w-full mesh-gradient overflow-hidden">
       <Sidebar />
       <main className="flex-1 overflow-hidden">
-        {children}
+        <Outlet />
       </main>
     </div>
   );
@@ -51,7 +52,7 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute() {
   const { isAuthenticated, loading } = useAuth();
   const location = useLocation();
 
@@ -67,96 +68,49 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return <>{children}</>;
+  return <Outlet />;
 }
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Auth Routes */}
-          <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
-          <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
+    <ConfigProvider
+      theme={{
+        algorithm: theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#6366f1',
+          borderRadius: 8,
+          fontFamily: 'Inter, sans-serif',
+        },
+      }}
+    >
+      <AuthProvider>
+        <Router>
+          <Routes>
+            {/* Public Auth Routes */}
+            <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+            <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
 
-          {/* Protected Life Tracker Routes */}
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Dashboard /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
+            {/* 2. Nested Routing Setup for Protected Layouts */}
+            <Route element={<ProtectedRoute />}>
+              <Route element={<DashboardLayout />}>
+                <Route path="/dashboard" element={<PageWrapper><Dashboard /></PageWrapper>} />
+                <Route path="/productivity" element={<PageWrapper><Productivity /></PageWrapper>} />
+                <Route path="/finance" element={<PageWrapper><Finance /></PageWrapper>} />
+                <Route path="/health" element={<PageWrapper><Health /></PageWrapper>} />
+                <Route path="/gaming" element={<PageWrapper><Gaming /></PageWrapper>} />
+                <Route path="/media" element={<PageWrapper><Media /></PageWrapper>} />
+                <Route path="/goals" element={<PageWrapper><Goals /></PageWrapper>} />
+                <Route path="/settings" element={<PageWrapper><Settings /></PageWrapper>} />
+                <Route path="/profile" element={<PageWrapper><Profile /></PageWrapper>} />
+              </Route>
+            </Route>
 
-          <Route path="/productivity" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Productivity /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/finance" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Finance /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/health" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Health /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/gaming" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Gaming /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/media" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Media /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/goals" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Goals /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/settings" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Settings /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <PageWrapper><Profile /></PageWrapper>
-              </DashboardLayout>
-            </ProtectedRoute>
-          } />
-
-          {/* Fallback */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+            {/* Fallbacks */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ConfigProvider>
   );
 }
