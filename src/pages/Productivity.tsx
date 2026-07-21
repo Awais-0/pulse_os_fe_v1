@@ -23,9 +23,9 @@ import {
   Layout
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { Modal } from '@/src/components/Modal';
-import { Dropdown } from '@/src/components/Dropdown';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
+import { DropdownX } from '@/src/components/custom-antd/DropdownX';
 import {
   AreaChart,
   Area,
@@ -107,7 +107,7 @@ export function Productivity() {
 
           <div className="flex items-center gap-3">
             <div className="flex p-1 glass rounded-xl">
-              <button
+              <ButtonX
                 onClick={() => setActiveTab('overview')}
                 className={cn(
                   "px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
@@ -115,8 +115,8 @@ export function Productivity() {
                 )}
               >
                 Overview
-              </button>
-              <button
+              </ButtonX>
+              <ButtonX
                 onClick={() => setActiveTab('engine')}
                 className={cn(
                   "px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all",
@@ -124,11 +124,11 @@ export function Productivity() {
                 )}
               >
                 Focus Engine
-              </button>
+              </ButtonX>
             </div>
-            <Button icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-indigo-600 hover:bg-indigo-500">
+            <ButtonX icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-indigo-600 hover:bg-indigo-500">
               New Init
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
@@ -201,7 +201,7 @@ export function Productivity() {
                     <LayoutGrid className="w-3.5 h-3.5" />
                     Priority Stack
                   </h2>
-                  <button className="text-[9px] font-black uppercase tracking-widest text-indigo-400">Expand Stack</button>
+                  <ButtonX className="text-[9px] font-black uppercase tracking-widest text-indigo-400">Expand Stack</ButtonX>
                 </div>
                 <div className="space-y-3">
                   {dummyTasks.map((task) => (
@@ -270,20 +270,20 @@ export function Productivity() {
               </div>
 
               <div className="flex gap-4">
-                <Button
+                <ButtonX
                   onClick={() => setIsActive(!isActive)}
                   variant="primary"
                   className="h-14 w-14 rounded-full p-0 flex items-center justify-center bg-indigo-600 shadow-lg shadow-indigo-500/20"
                 >
                   {isActive ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 fill-white" />}
-                </Button>
-                <Button
+                </ButtonX>
+                <ButtonX
                   onClick={() => { setIsActive(false); setTimer(25 * 60); }}
                   variant="ghost"
                   className="h-14 w-14 rounded-full p-0 flex items-center justify-center glass border-white/10"
                 >
                   <RotateCcw className="w-6 h-6 text-white/40" />
-                </Button>
+                </ButtonX>
               </div>
             </div>
 
@@ -323,7 +323,7 @@ export function Productivity() {
         )}
 
         {/* Modal Logic */}
-        <Modal
+        <ModalX
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Task Initialization"
@@ -339,7 +339,7 @@ export function Productivity() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <Dropdown
+              <DropdownX
                 label="Project"
                 value={taskProject}
                 onChange={setTaskProject}
@@ -349,7 +349,7 @@ export function Productivity() {
                   { label: 'Management', value: 'Management', icon: Briefcase },
                 ]}
               />
-              <Dropdown
+              <DropdownX
                 label="Priority"
                 value={taskPriority}
                 onChange={setTaskPriority}
@@ -362,11 +362,11 @@ export function Productivity() {
             </div>
 
             <div className="pt-4 flex gap-2">
-              <Button variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-              <Button variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-indigo-600 hover:bg-indigo-500">Initialize</Button>
+              <ButtonX variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</ButtonX>
+              <ButtonX variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-indigo-600 hover:bg-indigo-500">Initialize</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
       </motion.div>
     </div>
   );

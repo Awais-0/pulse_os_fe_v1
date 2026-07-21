@@ -22,9 +22,9 @@ import {
   BarChart3
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { Modal } from '@/src/components/Modal';
-import { Dropdown } from '@/src/components/Dropdown';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
+import { DropdownX } from '@/src/components/custom-antd/DropdownX';
 
 type FiscalEventType = 'income' | 'expense' | 'investment' | 'debt_payment';
 
@@ -91,9 +91,9 @@ export function Finance() {
                 className="bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold w-40 focus:w-60 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all placeholder:text-white/10"
               />
             </div>
-            <Button icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-emerald-600 hover:bg-emerald-500">
+            <ButtonX icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-emerald-600 hover:bg-emerald-500">
               New Event
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
@@ -116,7 +116,7 @@ export function Finance() {
                 </h2>
                 <div className="flex gap-2 p-1 glass rounded-lg">
                   {['all', 'income', 'expense'].map((f) => (
-                    <button
+                    <ButtonX
                       key={f}
                       onClick={() => setActiveFilter(f as any)}
                       className={cn(
@@ -125,11 +125,11 @@ export function Finance() {
                       )}
                     >
                       {f}
-                    </button>
+                    </ButtonX>
                   ))}
                 </div>
               </div>
-              <button className="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white/40">Full Report</button>
+              <ButtonX className="text-[10px] font-black uppercase tracking-widest text-white/20 hover:text-white/40">Full Report</ButtonX>
             </div>
 
             <div className="space-y-3">
@@ -225,14 +225,14 @@ export function Finance() {
           </div>
         </div>
 
-        <Modal
+        <ModalX
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Fiscal Event Sync"
         >
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <Dropdown
+              <DropdownX
                 label="Event Type"
                 value={eventType}
                 onChange={setEventType}
@@ -265,11 +265,11 @@ export function Finance() {
             </div>
 
             <div className="pt-4 flex gap-2">
-              <Button variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Abort</Button>
-              <Button variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-emerald-600 hover:bg-emerald-500">Execute Transaction</Button>
+              <ButtonX variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Abort</ButtonX>
+              <ButtonX variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-emerald-600 hover:bg-emerald-500">Execute Transaction</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
       </motion.div>
     </div>
   );

@@ -23,9 +23,9 @@ import {
   Beer
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { Modal } from '@/src/components/Modal';
-import { Dropdown } from '@/src/components/Dropdown';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
+import { DropdownX } from '@/src/components/custom-antd/DropdownX';
 
 type MetricType = 'vitals' | 'activity' | 'nutrition' | 'recovery';
 
@@ -125,9 +125,9 @@ export function Health() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-emerald-600 hover:bg-emerald-500">
+            <ButtonX icon={Plus} size="sm" variant="primary" onClick={() => setIsModalOpen(true)} className="bg-emerald-600 hover:bg-emerald-500">
               Log Protocol
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
@@ -270,14 +270,14 @@ export function Health() {
           </div>
         </div>
 
-        <Modal
+        <ModalX
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Bio-Data Sync"
         >
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <Dropdown
+              <DropdownX
                 label="Protocol Type"
                 value={protocolType}
                 onChange={setProtocolType}
@@ -290,11 +290,11 @@ export function Health() {
             </div>
             {/* Modal content continues... */}
             <div className="pt-4 flex gap-2">
-              <Button variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-              <Button variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-emerald-600 hover:bg-emerald-500">Establish Sync</Button>
+              <ButtonX variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</ButtonX>
+              <ButtonX variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-emerald-600 hover:bg-emerald-500">Establish Sync</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
       </motion.div>
     </div>
   );

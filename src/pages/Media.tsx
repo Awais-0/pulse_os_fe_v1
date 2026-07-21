@@ -17,9 +17,9 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { Modal } from '@/src/components/Modal';
-import { Dropdown } from '@/src/components/Dropdown';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
+import { DropdownX } from '@/src/components/custom-antd/DropdownX';
 import { getMedia, addMedia, updateMedia, deleteMedia, searchTMDB } from '@/src/lib/api';
 
 type MediaType = 'movie' | 'anime' | 'manga' | 'tv_show';
@@ -294,9 +294,9 @@ export function Media() {
                 className="bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold w-40 focus:w-60 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all placeholder:text-white/10"
               />
             </div>
-            <Button icon={Plus} size="sm" variant="primary" onClick={() => { resetForm(); setIsModalOpen(true); }}>
+            <ButtonX icon={Plus} size="sm" variant="primary" onClick={() => { resetForm(); setIsModalOpen(true); }}>
               Track
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
@@ -305,7 +305,7 @@ export function Media() {
           <div className="flex-1">
             <div className="flex flex-wrap gap-1.5 p-1 glass rounded-xl w-fit">
               {tabs.map((tab) => (
-                <button
+                <ButtonX
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
@@ -317,7 +317,7 @@ export function Media() {
                 >
                   <tab.icon className="w-3.5 h-3.5" />
                   {tab.label}
-                </button>
+                </ButtonX>
               ))}
             </div>
           </div>
@@ -392,23 +392,23 @@ export function Media() {
                       <div className="space-y-2.5">
                         <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-wider">
                           <div className="text-white/40 flex items-center gap-1">
-                            <button
+                            <ButtonX
                               onClick={(e) => handleDecrementProgress(e, media)}
                               disabled={media.currentProgress <= 0}
                               className="w-4 h-4 rounded bg-white/5 hover:bg-white/10 active:scale-90 flex items-center justify-center font-bold text-white text-[10px] disabled:opacity-20 transition-all"
                             >
                               -
-                            </button>
+                            </ButtonX>
                             <span className="text-white/80 px-1 font-bold text-[10px]">{media.currentProgress}</span>
                             <span className="text-white/10">/</span>
                             <span>{media.totalUnits}</span>
-                            <button
+                            <ButtonX
                               onClick={(e) => handleIncrementProgress(e, media)}
                               disabled={media.currentProgress >= media.totalUnits}
                               className="w-4 h-4 rounded bg-white/5 hover:bg-white/10 active:scale-90 flex items-center justify-center font-bold text-white text-[10px] disabled:opacity-20 transition-all"
                             >
                               +
-                            </button>
+                            </ButtonX>
                           </div>
                           <div className="text-purple-400/80">{Math.round((media.currentProgress / Math.max(media.totalUnits, 1)) * 100)}%</div>
                         </div>
@@ -426,7 +426,7 @@ export function Media() {
                             <History className="w-2.5 h-2.5" />
                             {media.lastUpdated}
                           </div>
-                          <button
+                          <ButtonX
                             onClick={(e) => {
                               e.stopPropagation();
                               setActiveMenuId(activeMenuId === media.id ? null : media.id);
@@ -434,13 +434,13 @@ export function Media() {
                             className="p-1 hover:bg-white/10 rounded-md transition-colors"
                           >
                             <MoreVertical className="w-3.5 h-3.5" />
-                          </button>
+                          </ButtonX>
 
                           {activeMenuId === media.id && (
                             <div className="absolute right-0 bottom-8 z-50 glass border border-white/10 rounded-xl shadow-2xl p-1.5 min-w-[120px] space-y-1">
                               <p className="text-[7px] font-black uppercase tracking-wider text-white/20 px-2 py-0.5">Status</p>
                               {(['planning', 'active', 'completed', 'paused'] as MediaStatus[]).map((status) => (
-                                <button
+                                <ButtonX
                                   key={status}
                                   onClick={(e) => handleStatusChange(e, media, status)}
                                   className={cn(
@@ -449,16 +449,16 @@ export function Media() {
                                   )}
                                 >
                                   {status}
-                                </button>
+                                </ButtonX>
                               ))}
                               <div className="border-t border-white/5 my-1" />
-                              <button
+                              <ButtonX
                                 onClick={(e) => handleDelete(e, media.id)}
                                 className="w-full text-left text-[9px] font-bold px-2 py-1 rounded transition-colors text-rose-400 hover:bg-rose-500/10 flex items-center gap-1.5 uppercase tracking-wider"
                               >
                                 <Trash2 className="w-3 h-3" />
                                 Delete
-                              </button>
+                              </ButtonX>
                             </div>
                           )}
                         </div>
@@ -482,7 +482,7 @@ export function Media() {
           </div>
         )}
 
-        <Modal
+        <ModalX
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Leisure Sync"
@@ -503,12 +503,12 @@ export function Media() {
                   {isSearchingTmdb ? (
                     <Loader2 className="w-4 h-4 text-purple-500 animate-spin" />
                   ) : (
-                    <button
+                    <ButtonX
                       onClick={handleSearchTMDB}
                       className="text-white/30 hover:text-purple-400 transition-colors p-0.5"
                     >
                       <Search className="w-4 h-4" />
-                    </button>
+                    </ButtonX>
                   )}
                 </div>
               </div>
@@ -556,7 +556,7 @@ export function Media() {
                   <p className="text-xs font-bold text-white truncate">{title}</p>
                   <p className="text-[9px] text-white/40 uppercase font-black">{mediaType.replace('_', ' ')}</p>
                 </div>
-                <button
+                <ButtonX
                   onClick={() => {
                     setSelectedTmdbId(null);
                     setCoverImage('');
@@ -565,12 +565,12 @@ export function Media() {
                   className="text-[10px] text-purple-400 hover:text-purple-300 font-bold uppercase tracking-wider px-2 py-1 rounded hover:bg-purple-500/10 transition-colors"
                 >
                   Unlink
-                </button>
+                </ButtonX>
               </div>
             )}
 
             <div className="grid grid-cols-2 gap-3">
-              <Dropdown
+              <DropdownX
                 label="Type"
                 value={mediaType}
                 onChange={setMediaType}
@@ -581,7 +581,7 @@ export function Media() {
                   { label: 'TV Show', value: 'tv_show', icon: Tv },
                 ]}
               />
-              <Dropdown
+              <DropdownX
                 label="Status"
                 value={mediaStatus}
                 onChange={setMediaStatus}
@@ -620,11 +620,11 @@ export function Media() {
             )}
 
             <div className="pt-4 flex gap-2">
-              <Button variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-              <Button variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-purple-600" onClick={handleEstablishSync}>Establish Sync</Button>
+              <ButtonX variant="ghost" className="flex-1 h-11 rounded-xl font-bold" onClick={() => setIsModalOpen(false)}>Cancel</ButtonX>
+              <ButtonX variant="primary" className="flex-1 h-11 rounded-xl font-black uppercase tracking-widest text-[10px] bg-purple-600" onClick={handleEstablishSync}>Establish Sync</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
       </motion.div>
     </div>
   );

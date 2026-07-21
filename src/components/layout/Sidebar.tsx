@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
+import { ButtonX } from '../custom-antd/ButtonX';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
@@ -81,7 +82,7 @@ export function Sidebar() {
             </motion.span>
           )}
         </div>
-        <button
+        <ButtonX
           onClick={toggleCollapse}
           className={cn(
             "text-white/50 hover:text-white transition-all hover:bg-white/10 rounded-lg p-1",
@@ -89,7 +90,7 @@ export function Sidebar() {
           )}
         >
           {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-        </button>
+        </ButtonX>
       </div>
 
       <nav className="flex-1 px-4 space-y-2 mt-4 overflow-y-auto custom-scrollbar">

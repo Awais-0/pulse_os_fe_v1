@@ -22,10 +22,9 @@ import {
   Activity
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { SearchBar } from '@/src/components/SearchBar';
-import { Modal } from '@/src/components/Modal';
-import { Dropdown } from '@/src/components/Dropdown';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
+import { DropdownX } from '@/src/components/custom-antd/DropdownX';
 
 type GoalCategory = 'productivity' | 'finance' | 'health' | 'media' | 'gaming';
 
@@ -205,16 +204,16 @@ export function Goals() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button icon={Plus} onClick={() => setIsModalOpen(true)}>
+            <ButtonX icon={Plus} onClick={() => setIsModalOpen(true)}>
               New Objective
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
         {/* Category Navigation */}
         <div className="flex flex-wrap gap-2 mb-10 p-1.5 glass rounded-2xl w-fit">
           {categories.map((cat) => (
-            <button
+            <ButtonX
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={cn(
@@ -226,7 +225,7 @@ export function Goals() {
             >
               <cat.icon className="w-4 h-4" />
               {cat.label}
-            </button>
+            </ButtonX>
           ))}
         </div>
 
@@ -341,12 +340,12 @@ export function Goals() {
                   </div>
 
                   <div className="pt-4 flex gap-3">
-                    <Button variant="primary" className="flex-1 rounded-2xl gap-2 font-black uppercase tracking-widest text-[10px]">
+                    <ButtonX variant="primary" className="flex-1 rounded-2xl gap-2 font-black uppercase tracking-widest text-[10px]">
                       Update Progress
-                    </Button>
-                    <Button variant="glass" className="aspect-square p-0 w-12 rounded-2xl">
+                    </ButtonX>
+                    <ButtonX variant="glass" className="aspect-square p-0 w-12 rounded-2xl">
                       <MoreVertical className="w-5 h-5 text-white/40" />
-                    </Button>
+                    </ButtonX>
                   </div>
                 </div>
               </motion.div>
@@ -370,7 +369,7 @@ export function Goals() {
         </div>
 
         {/* Modal Logic remains but is now connected to state */}
-        <Modal
+        <ModalX
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Architect New Objective"
@@ -386,7 +385,7 @@ export function Goals() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <Dropdown
+              <DropdownX
                 label="Dimension"
                 value={goalCategory}
                 onChange={setGoalCategory}
@@ -398,7 +397,7 @@ export function Goals() {
                   { label: 'Media', value: 'media', icon: Film },
                 ]}
               />
-              <Dropdown
+              <DropdownX
                 label="Priority"
                 value={goalPriority}
                 onChange={setGoalPriority}
@@ -411,11 +410,11 @@ export function Goals() {
             </div>
 
             <div className="pt-4 flex gap-3">
-              <Button variant="ghost" className="flex-1 h-14 rounded-2xl font-bold" onClick={() => setIsModalOpen(false)}>Abort</Button>
-              <Button variant="primary" className="flex-1 h-14 rounded-2xl font-black uppercase tracking-widest text-xs" icon={Flag}>Establish Goal</Button>
+              <ButtonX variant="ghost" className="flex-1 h-14 rounded-2xl font-bold" onClick={() => setIsModalOpen(false)}>Abort</ButtonX>
+              <ButtonX variant="primary" className="flex-1 h-14 rounded-2xl font-black uppercase tracking-widest text-xs" icon={Flag}>Establish Goal</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
       </motion.div>
     </div>
   );

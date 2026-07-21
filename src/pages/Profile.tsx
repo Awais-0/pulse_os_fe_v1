@@ -23,11 +23,11 @@ import {
   Info
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { Modal } from '@/src/components/Modal';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
 import { getProfile, updateProfile, uploadAvatar, uploadBanner } from '@/src/lib/api';
 import { useNavigate } from 'react-router-dom';
-import Loader from '@/src/components/CustomLoader';
+import Loader from '@/src/components/custom-antd/LoaderX';
 
 export function Profile() {
   const [profile, setProfile] = useState<any>(null);
@@ -169,10 +169,10 @@ export function Profile() {
             <div className="absolute inset-0 mesh-gradient opacity-60" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent" />
-          <Button variant="glass" size="sm" className="absolute top-6 right-8 gap-2 border-white/10" onClick={() => setIsBannerModalOpen(true)}>
+          <ButtonX variant="glass" size="sm" className="absolute top-6 right-8 gap-2 border-white/10" onClick={() => setIsBannerModalOpen(true)}>
             <Camera className="w-4 h-4" />
             Edit Banner
-          </Button>
+          </ButtonX>
 
           <input
             type="file"
@@ -226,8 +226,8 @@ export function Profile() {
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <Button variant="primary" icon={Edit2} onClick={() => setIsEditModalOpen(true)}>Edit Profile</Button>
-                  <Button variant="glass" className="p-3"><Mail className="w-5 h-5" /></Button>
+                  <ButtonX variant="primary" icon={Edit2} onClick={() => setIsEditModalOpen(true)}>Edit Profile</ButtonX>
+                  <ButtonX variant="glass" className="p-3"><Mail className="w-5 h-5" /></ButtonX>
                 </div>
               </div>
             </div>
@@ -323,7 +323,7 @@ export function Profile() {
             <section className="glass p-8 rounded-[2.5rem]">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-sm font-black uppercase tracking-[0.3em] text-white/20">Unlocked Achievements</h3>
-                <Button variant="ghost" size="sm">View All</Button>
+                <ButtonX variant="ghost" size="sm">View All</ButtonX>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
@@ -369,7 +369,7 @@ export function Profile() {
       </motion.div>
 
       {/* Edit Profile Modal */}
-      <Modal
+      <ModalX
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         title="Edit Personal Velocity"
@@ -477,28 +477,28 @@ export function Profile() {
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button
+            <ButtonX
               type="button"
               variant="glass"
               className="flex-1"
               onClick={() => setIsEditModalOpen(false)}
             >
               Cancel
-            </Button>
-            <Button
+            </ButtonX>
+            <ButtonX
               type="submit"
               variant="primary"
               className="flex-1"
               disabled={isUpdating}
             >
               {isUpdating ? 'Saving...' : 'Save Changes'}
-            </Button>
+            </ButtonX>
           </div>
         </form>
-      </Modal>
+      </ModalX>
 
       {/* Banner Edit Modal */}
-      <Modal
+      <ModalX
         isOpen={isBannerModalOpen}
         onClose={() => setIsBannerModalOpen(false)}
         title="Customize Workspace View"
@@ -509,7 +509,7 @@ export function Profile() {
             <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-4 ml-1">Pre-added Templates</h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {bannerTemplates.map((url, i) => (
-                <button
+                <ButtonX
                   key={i}
                   onClick={() => handleTemplateSelect(url)}
                   className={cn(
@@ -525,9 +525,9 @@ export function Profile() {
                       </div>
                     </div>
                   )}
-                </button>
+                </ButtonX>
               ))}
-              <button
+              <ButtonX
                 onClick={handleBannerUploadClick}
                 className="relative aspect-[3/1] rounded-2xl border-2 border-dashed border-white/10 hover:border-indigo-500/50 hover:bg-indigo-500/5 transition-all flex flex-col items-center justify-center gap-2 group"
               >
@@ -535,7 +535,7 @@ export function Profile() {
                   <Camera className="w-4 h-4 text-white/30 group-hover:text-indigo-400" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-white/20 group-hover:text-white/40">Upload Custom</span>
-              </button>
+              </ButtonX>
             </div>
           </div>
 
@@ -551,15 +551,15 @@ export function Profile() {
             </div>
           </div>
 
-          <Button
+          <ButtonX
             variant="glass"
             className="w-full py-4 rounded-2xl text-sm font-black uppercase tracking-widest"
             onClick={() => setIsBannerModalOpen(false)}
           >
             Close
-          </Button>
+          </ButtonX>
         </div>
-      </Modal>
+      </ModalX>
     </div>
   );
 }

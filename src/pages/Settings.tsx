@@ -27,7 +27,7 @@ import {
   CreditCard
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
 
 type SettingTab = 'general' | 'dimensions' | 'appearance' | 'data';
 
@@ -69,7 +69,7 @@ export function Settings() {
         {/* Tab Navigation */}
         <div className="flex flex-wrap gap-2 mb-10 p-1.5 glass rounded-2xl w-fit">
           {tabs.map((tab) => (
-            <button
+            <ButtonX
               key={tab.id}
               onClick={() => setActiveTab(tab.id as SettingTab)}
               className={cn(
@@ -81,7 +81,7 @@ export function Settings() {
             >
               <tab.icon className="w-4 h-4" />
               {tab.label}
-            </button>
+            </ButtonX>
           ))}
         </div>
 
@@ -110,10 +110,10 @@ export function Settings() {
                         </div>
                         <p className="text-white/40 text-sm mb-4 font-medium italic">Productivity Architect since May 2024</p>
                         <div className="flex flex-wrap gap-3">
-                          <Button variant="glass" size="sm" className="gap-2">
+                          <ButtonX variant="glass" size="sm" className="gap-2">
                             <CreditCard className="w-4 h-4" />
                             Manage Subscription
-                          </Button>
+                          </ButtonX>
                         </div>
                       </div>
                     </div>
@@ -140,20 +140,20 @@ export function Settings() {
                   <div className="glass p-8 rounded-[2.5rem] border-red-500/10">
                     <h4 className="text-sm font-black uppercase tracking-[0.3em] text-white/20 mb-6 px-2">Account Integrity</h4>
                     <div className="space-y-4">
-                      <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/[0.08] transition-colors group">
+                      <ButtonX className="w-full flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/[0.08] transition-colors group">
                         <div className="flex items-center gap-4 text-white/80 font-bold">
                           <Lock className="w-5 h-5 text-white/30" />
                           Rotate Security Keys
                         </div>
                         <ChevronRight className="w-4 h-4 text-white/10" />
-                      </button>
-                      <button className="w-full flex items-center justify-between p-4 rounded-2xl bg-red-500/5 hover:bg-red-500/10 transition-colors group">
+                      </ButtonX>
+                      <ButtonX className="w-full flex items-center justify-between p-4 rounded-2xl bg-red-500/5 hover:bg-red-500/10 transition-colors group">
                         <div className="flex items-center gap-4 text-red-400/80 font-bold">
                           <Trash2 className="w-5 h-5" />
                           Deactivate PulseOS Identity
                         </div>
                         <span className="text-[9px] font-black text-red-500/40 uppercase tracking-widest px-2 py-1 rounded-md border border-red-500/20">Danger Zone</span>
-                      </button>
+                      </ButtonX>
                     </div>
                   </div>
                 </motion.div>
@@ -191,14 +191,14 @@ export function Settings() {
                         <label className="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Accent Core Color</label>
                         <div className="flex gap-4">
                           {accents.map((accent) => (
-                            <button
+                            <ButtonX
                               key={accent.name}
                               onClick={() => setAccentColor(accent.color)}
                               className="w-10 h-10 rounded-2xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95 shadow-lg"
                               style={{ backgroundColor: accent.color }}
                             >
                               {accentColor === accent.color && <Check className="w-5 h-5 text-white" />}
-                            </button>
+                            </ButtonX>
                           ))}
                         </div>
                       </div>
@@ -253,14 +253,14 @@ export function Settings() {
                   <section className="glass p-8 rounded-[2.5rem]">
                     <h4 className="text-sm font-black uppercase tracking-[0.3em] text-white/20 mb-8">Data Liquidity</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Button variant="glass" className="h-16 rounded-2xl gap-3 font-bold">
+                      <ButtonX variant="glass" className="h-16 rounded-2xl gap-3 font-bold">
                         <Database className="w-5 h-5 text-indigo-400" />
                         Export JSON Archive
-                      </Button>
-                      <Button variant="glass" className="h-16 rounded-2xl gap-3 font-bold">
+                      </ButtonX>
+                      <ButtonX variant="glass" className="h-16 rounded-2xl gap-3 font-bold">
                         <Smartphone className="w-5 h-5 text-purple-400" />
                         Sync Local Device
-                      </Button>
+                      </ButtonX>
                     </div>
                   </section>
                 </motion.div>
@@ -293,16 +293,16 @@ export function Settings() {
                   </div>
                 ))}
               </div>
-              <Button variant="ghost" className="w-full mt-8 border-white/5 rounded-2xl font-black uppercase tracking-widest text-[10px]">
+              <ButtonX variant="ghost" className="w-full mt-8 border-white/5 rounded-2xl font-black uppercase tracking-widest text-[10px]">
                 Add Dimension Hook
-              </Button>
+              </ButtonX>
             </section>
 
             <section className="glass p-8 rounded-[2.5rem] bg-indigo-500/5 relative overflow-hidden group">
               <Sparkles className="absolute -top-4 -right-4 w-24 h-24 text-indigo-500/10 group-hover:scale-125 transition-transform duration-700" />
               <h4 className="font-black text-lg mb-2 relative z-10">PulseOS Enterprise</h4>
               <p className="text-xs text-white/40 leading-relaxed mb-6 relative z-10">Unlock predictive AI modeling and unlimited dimension hooks for deep-level life orchestration.</p>
-              <Button variant="primary" className="w-full rounded-2xl shadow-lg shadow-indigo-500/20 relative z-10">Scale Your Potential</Button>
+              <ButtonX variant="primary" className="w-full rounded-2xl shadow-lg shadow-indigo-500/20 relative z-10">Scale Your Potential</ButtonX>
             </section>
           </div>
         </div>

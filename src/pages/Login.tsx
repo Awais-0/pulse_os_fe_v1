@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login } from '@/src/lib/api';
 import { useApi } from '@/src/hooks/useApi';
 import { useAuth } from '../contexts/AuthContext';
+import { ButtonX } from '../components/custom-antd/ButtonX';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -90,7 +91,7 @@ export function Login() {
             </div>
           </div>
 
-          <button
+          <ButtonX
             type="submit"
             disabled={loading}
             className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-500/25 transition-all active:scale-[0.98] flex items-center justify-center gap-2 group"
@@ -103,7 +104,7 @@ export function Login() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </>
             )}
-          </button>
+          </ButtonX>
         </form>
 
         <div className="mt-8 pt-8 border-t border-white/10 space-y-4">
@@ -113,10 +114,10 @@ export function Login() {
             <div className="h-px flex-1 bg-white/10" />
           </div>
 
-          <button className="w-full glass py-3 rounded-2xl flex items-center justify-center gap-3 text-sm font-bold hover:bg-white/10 transition-colors">
+          <ButtonX className="w-full glass py-3 rounded-2xl flex items-center justify-center gap-3 text-sm font-bold hover:bg-white/10 transition-colors">
             <Github className="w-5 h-5" />
             GitHub
-          </button>
+          </ButtonX>
         </div>
 
         <p className="text-center mt-8 text-sm text-white/40 font-medium">

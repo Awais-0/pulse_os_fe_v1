@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { BentoCard } from '@/src/components/BentoCard';
 import { fetchHealth } from '@/src/lib/api';
 import { Responsive, WidthProvider } from 'react-grid-layout/legacy';
 import '/node_modules/react-grid-layout/css/styles.css';
@@ -39,6 +38,8 @@ import {
   PieChart,
   Pie
 } from 'recharts';
+import { ButtonX } from '../components/custom-antd/ButtonX';
+import { CardX } from '../components/custom-antd/CardX';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -154,7 +155,7 @@ export function Dashboard() {
         >
           {/* Finance Dimension */}
           <div key="finance">
-            <BentoCard delay={0.1} className="rainbow-border overflow-hidden">
+            <CardX delay={0.1} className="rainbow-border overflow-hidden">
               <div className="relative h-full flex flex-col">
                 <div className="flex justify-between items-start mb-6">
                   <div className="space-y-1">
@@ -183,12 +184,12 @@ export function Dashboard() {
                   </ResponsiveContainer>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Health Dimension */}
           <div key="health">
-            <BentoCard delay={0.2} className="relative overflow-hidden">
+            <CardX delay={0.2} className="relative overflow-hidden">
               <div className="flex justify-between items-center h-full">
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-rose-500">
@@ -208,12 +209,12 @@ export function Dashboard() {
                   </ResponsiveContainer>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Gaming Dimension */}
           <div key="gaming">
-            <BentoCard delay={0.3} className="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border-indigo-500/20">
+            <CardX delay={0.3} className="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border-indigo-500/20">
               <div className="flex items-center gap-4 h-full">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center relative">
                   <Gamepad2 className="w-8 h-8 text-indigo-400" />
@@ -228,20 +229,20 @@ export function Dashboard() {
                   </div>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Life Dimensions Radar */}
           <div key="overview">
-            <BentoCard delay={0.4} className="flex flex-col">
+            <CardX delay={0.4} className="flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 text-yellow-500">
                   <Zap className="w-5 h-5 fill-yellow-500/20" />
                   <span className="font-black uppercase tracking-[0.2em] text-[11px]">Dimension Velocity</span>
                 </div>
-                <button className="text-white/20 hover:text-white transition-colors">
+                <ButtonX className="text-white/20 hover:text-white transition-colors">
                   <ChevronRight className="w-5 h-5" />
-                </button>
+                </ButtonX>
               </div>
               <div className="flex-1 min-h-0">
                 <ResponsiveContainer width="100%" height="100%">
@@ -258,12 +259,12 @@ export function Dashboard() {
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Productivity Dimension */}
           <div key="productivity">
-            <BentoCard delay={0.5} className="bg-indigo-500/5 border-indigo-500/10">
+            <CardX delay={0.5} className="bg-indigo-500/5 border-indigo-500/10">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex items-center gap-2 text-indigo-400">
@@ -284,11 +285,11 @@ export function Dashboard() {
                   </ResponsiveContainer>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           <div key="media">
-            <BentoCard delay={0.5}>
+            <CardX delay={0.5}>
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-2 text-purple-400 mb-6">
                   <Film className="w-4 h-4" />
@@ -324,12 +325,12 @@ export function Dashboard() {
                   </div>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Goal Progress */}
           <div key="goals">
-            <BentoCard delay={0.6}>
+            <CardX delay={0.6}>
               <div className="h-full flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                   <div className="space-y-1">
@@ -355,12 +356,12 @@ export function Dashboard() {
                   </div>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
 
           {/* Consistency Streak */}
           <div key="streak">
-            <BentoCard delay={0.7} className="bg-rose-500/5 border-rose-500/10">
+            <CardX delay={0.7} className="bg-rose-500/5 border-rose-500/10">
               <div className="flex items-center gap-6 h-full px-4">
                 <div className="relative">
                   <div className="absolute inset-0 bg-rose-500 blur-2xl opacity-20 animate-pulse" />
@@ -375,7 +376,7 @@ export function Dashboard() {
                   </div>
                 </div>
               </div>
-            </BentoCard>
+            </CardX>
           </div>
         </ResponsiveGridLayout>
       </div>
