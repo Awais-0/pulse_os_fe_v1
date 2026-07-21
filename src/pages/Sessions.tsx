@@ -14,9 +14,9 @@ import {
   Briefcase
 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
-import { SearchBar } from '@/src/components/SearchBar';
-import { Modal } from '@/src/components/Modal';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
+import { SearchBarX } from '@/src/components/custom-antd/SearchBarX';
+import { ModalX } from '@/src/components/custom-antd/ModalX';
 
 interface Session {
   id: string;
@@ -102,18 +102,18 @@ export function Sessions() {
           </div>
           
           <div className="flex items-center gap-3">
-            <SearchBar placeholder="Search sessions..." className="w-40" />
-            <Button variant="glass" className="p-3">
+            <SearchBarX placeholder="Search sessions..." className="w-40" />
+            <ButtonX variant="glass" className="p-3">
               <Filter className="w-5 h-5 text-indigo-400" />
-            </Button>
-            <Button icon={Zap} onClick={() => setIsModalOpen(true)}>
+            </ButtonX>
+            <ButtonX icon={Zap} onClick={() => setIsModalOpen(true)}>
               Start Session
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
         {/* Start Session Modal */}
-        <Modal 
+        <ModalX
           isOpen={isModalOpen} 
           onClose={() => setIsModalOpen(false)} 
           title="Begin New Session"
@@ -161,11 +161,11 @@ export function Sessions() {
             </div>
 
             <div className="pt-4 flex gap-3">
-              <Button variant="ghost" className="flex-1" onClick={() => setIsModalOpen(false)}>Cancel</Button>
-              <Button variant="primary" className="flex-1" icon={Zap}>Initialize Session</Button>
+              <ButtonX variant="ghost" className="flex-1" onClick={() => setIsModalOpen(false)}>Cancel</ButtonX>
+              <ButtonX variant="primary" className="flex-1" icon={Zap}>Initialize Session</ButtonX>
             </div>
           </div>
-        </Modal>
+        </ModalX>
 
         {/* Stats Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -260,23 +260,23 @@ export function Sessions() {
                         </div>
                       </div>
                     </div>
-                    <button className="p-2 hover:bg-white/10 rounded-xl transition-colors text-white/30 hover:text-white">
+                    <ButtonX className="p-2 hover:bg-white/10 rounded-xl transition-colors text-white/30 hover:text-white">
                       <MoreVertical className="w-5 h-5" />
-                    </button>
+                    </ButtonX>
                   </div>
                 </div>
               </motion.div>
             );
           })}
 
-          <Button 
+          <ButtonX 
             variant="ghost" 
             className="w-full py-8 border-2 border-dashed border-white/5 hover:border-white/10 rounded-[2rem]"
             icon={ArrowUpRight}
             iconPosition="right"
           >
             Load Older Sessions
-          </Button>
+          </ButtonX>
         </div>
       </motion.div>
     </div>

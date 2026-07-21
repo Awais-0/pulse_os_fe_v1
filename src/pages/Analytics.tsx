@@ -27,7 +27,7 @@ import {
   Cell
 } from 'recharts';
 import { cn } from '@/src/lib/utils';
-import { Button } from '@/src/components/Button';
+import { ButtonX } from '@/src/components/custom-antd/ButtonX';
 
 const productivityData = [
   { name: 'Mon', value: 65 },
@@ -73,12 +73,12 @@ export function Analytics() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="glass" icon={Calendar}>
+            <ButtonX variant="glass" icon={Calendar}>
               Last 7 Days
-            </Button>
-            <Button variant="primary" icon={TrendingUp}>
+            </ButtonX>
+            <ButtonX variant="primary" icon={TrendingUp}>
               Export Report
-            </Button>
+            </ButtonX>
           </div>
         </header>
 
@@ -292,9 +292,9 @@ export function Analytics() {
                   </p>
                 </div>
               </div>
-              <Button variant="glass" className="w-full mt-8 border-indigo-500/30">
+              <ButtonX variant="glass" className="w-full mt-8 border-indigo-500/30">
                 View Detailed Analysis
-              </Button>
+              </ButtonX>
             </div>
             {/* Background Decorative Element */}
             <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none" />

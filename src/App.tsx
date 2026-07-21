@@ -6,7 +6,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, Outlet } from 'react-router-dom';
 import { ConfigProvider, theme } from 'antd';
-import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './pages/Dashboard';
 import { Productivity } from './pages/Productivity';
 import { Goals } from './pages/Goals';
@@ -19,9 +18,11 @@ import { Profile } from './pages/Profile';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { motion, AnimatePresence } from 'motion/react';
-import Loader from '@/src/components/CustomLoader';
+import LoaderX from '@/src/components/custom-antd/LoaderX';
 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { Loader2 } from 'lucide-react';
+import { Sidebar } from './components/layout/Sidebar';
 
 function DashboardLayout() {
   return (
@@ -59,7 +60,7 @@ function ProtectedRoute() {
   if (loading) {
     return (
       <div className="flex h-screen w-full items-center justify-center mesh-gradient">
-        <Loader />
+        <Loader2 />
       </div>
     );
   }
